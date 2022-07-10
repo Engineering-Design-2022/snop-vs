@@ -1,2 +1,2 @@
-/dnop/target/*
-!/dnop/target/*.war
+/app/target/*
+!/app/target/*.war
