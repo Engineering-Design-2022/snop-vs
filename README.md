@@ -10,7 +10,15 @@ code --version
 ```
 で全てバージョンが返ってくることを確認する
 
-2. 環境構築
+2. git の認証が完了しているか確認
+```
+> ssh -T git@github.com
+Hi [YOUR NAME]! You've successfully authenticated, but GitHub does not provide shell access.
+```
+エラーが出るときはssh keyを作るところから
+https://qiita.com/shizuma/items/2b2f873a0034839e47ce
+
+3. 環境構築
 
 以下のコマンドを実行
 ```
