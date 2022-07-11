@@ -1,14 +1,20 @@
 # dnop
 
 ## 環境構築
-
-1. java をインストール
+1. ツールの確認
 ```
-> java --version
-openjdk 11.0.15 2022-04-19
-OpenJDK Runtime Environment (build 11.0.15+10-Ubuntu-0ubuntu0.20.04.1)
-OpenJDK 64-Bit Server VM (build 11.0.15+10-Ubuntu-0ubuntu0.20.04.1, mixed mode, sharing)
+git --version
+docker --version
+docker-compose --version
+code --version
+```
+で全てバージョンが返ってくることを確認する
 
-> javac --version
-javac 11.0.15
+2. 環境構築
+
+以下のコマンドを実行
+```
+git clone git@github.com:Engineering-Design-2022/snop-vs.git
+cd snop-vs/
+code .
 ```
