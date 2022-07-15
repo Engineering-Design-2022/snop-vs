@@ -7,8 +7,10 @@ git --version
 docker --version
 docker-compose --version
 code --version
+mvn --version
+inotifywait -h
 ```
-で全てバージョンが返ってくることを確認する
+が実行されることを確認する
 
 ### git の認証が完了しているか確認
 ```
@@ -26,3 +28,17 @@ git clone git@github.com:Engineering-Design-2022/snop-vs.git
 cd snop-vs/
 code .
 ```
+
+# 開発用コマンド
+- データベース・tomcat のコンテナを立てる
+  - `docker-compose up` or `docker-compose up -d`
+- コンテナを終了する
+  - `docker-compose down`
+- ホットコンパイルサーバを立てる
+  - `make watch`
+- コンパイル + war 化する
+  - `make build`
+- コンパイルする
+  - `make compile`
+- war化する
+  - `make package`

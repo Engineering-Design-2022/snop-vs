@@ -7,7 +7,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - ./app/target/:/usr/local/tomcat/webapps/
+      - ./app/target/app.war:/usr/local/tomcat/webapps/app.war
 
   db:
     container_name: postgres
