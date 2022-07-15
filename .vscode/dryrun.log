@@ -1,5 +1,5 @@
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/lemonadern/git/ed--snop-vs'
-make: 'watch' is up to date.
+mvn compile -f app/pom.xml
 make: Leaving directory '/home/lemonadern/git/ed--snop-vs'
  

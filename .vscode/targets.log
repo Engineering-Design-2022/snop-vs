@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed Jul 13 14:19:38 2022
+# Make data base, printed on Fri Jul 15 23:51:48 2022
 
 # Variables
 
@@ -68,10 +68,8 @@ XDG_DATA_DIRS = /usr/share/gnome:/usr/share/pantheon:/home/lemonadern/.local/sha
 DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
 VSCODE_VERBOSE_LOGGING = true
-# makefile (from 'Makefile', line 1)
-WATCHER = ./watch.sh
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-83044ef1-8329-41a6-b9a2-6f31e4b40972.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-6f2e26ef-d88a-4fee-8288-709bcf734f83.sock
 # environment
 LC_NAME = en_US.UTF-8
 # environment
@@ -113,7 +111,7 @@ XDG_SESSION_DESKTOP = pantheon
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 391891
+GIO_LAUNCHED_DESKTOP_FILE_PID = 448838
 # automatic
 %F = $(notdir $%)
 # environment
@@ -170,8 +168,6 @@ MAKE = $(MAKE_COMMAND)
 MAKECMDGOALS := all
 # environment
 QT_IM_MODULE = ibus
-# makefile (from 'Makefile', line 2)
-SRCS = $(shell find ./app -name '*.java' -o -name '*.jsp')
 # environment
 SHLVL = 1
 # default
@@ -181,7 +177,7 @@ USER = lemonadern
 # environment
 LC_MONETARY = en_US.UTF-8
 # makefile
-.DEFAULT_GOAL := watch
+.DEFAULT_GOAL := compile
 # environment
 XDG_CURRENT_DESKTOP = Unity
 # automatic
@@ -253,11 +249,11 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 393877
+VSCODE_PID = 462439
 # environment
 NVM_RC_VERSION = 
 # variable set hash-table stats:
-# Load=122/1024=12%, Rehash=0, Collisions=14/147=10%
+# Load=120/1024=12%, Rehash=0, Collisions=14/145=10%
 
 # Pattern-specific Variable Values
 
@@ -265,9 +261,9 @@ NVM_RC_VERSION =
 
 # Directories
 
-# . (device 64768, inode 29623531): 12 files, no impossibilities.
+# . (device 64768, inode 29623531): 11 files, no impossibilities.
 
-# 12 files, no impossibilities in 1 directories.
+# 11 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -285,38 +281,63 @@ all:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-13 14:19:37.920309546
+#  Last modified 2022-07-15 23:05:21.092734311
 #  File has been updated.
 #  Successfully updated.
+
+build:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+ 
+#  recipe to execute (from 'Makefile', line 8):
+	@make compile
+	@make package
 
 watch:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 5):
-	
+#  recipe to execute (from 'Makefile', line 12):
+	@while true; do \
+		inotifywait -qr -e modify -e create -e delete -e move app/src/main; \
+		make build; \
+	done
+
+compile:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 2):
+	@mvn compile -f app/pom.xml
 
 # Not a target:
 .DEFAULT:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
- 
+
+package:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 5):
+	@mvn package -f app/pom.xml
 
 # files hash-table stats:
-# Load=5/1024=0%, Rehash=0, Collisions=0/15=0%
+# Load=8/1024=1%, Rehash=0, Collisions=0/18=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 18 / storage = 157 B / avg = 8 B
-# current buf: size = 8162 B / used = 157 B / count = 18 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 20 / storage = 170 B / avg = 8 B
+# current buf: size = 8162 B / used = 170 B / count = 20 / avg = 8 B
 
-# strcache performance: lookups = 23 / hit rate = 21%
+# strcache performance: lookups = 28 / hit rate = 28%
 # hash-table stats:
-# Load=18/8192=0%, Rehash=0, Collisions=1/23=4%
-# Finished Make data base on Wed Jul 13 14:19:38 2022
+# Load=20/8192=0%, Rehash=0, Collisions=1/28=4%
+# Finished Make data base on Fri Jul 15 23:51:48 2022
 
  
