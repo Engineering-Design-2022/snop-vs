@@ -51,4 +51,18 @@ public class DBServlet extends HttpServlet {
         }
     }
 
+    public static Connection getUserConnection() {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			// データベース接続時のデバッグ表示
+			System.out.println("Connecting to " + DB_URL +
+					"using user=" + DB_USER + " and password=" + DB_PASS);
+			Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+			return con;
+		} catch (Exception e) {
+			e.printStackTrace(); // データベース接続の例外エラー表示
+			throw new IllegalStateException(e);
+		}
+	}
+
 }
