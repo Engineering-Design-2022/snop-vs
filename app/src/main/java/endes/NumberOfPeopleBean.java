@@ -1,0 +1,68 @@
+package endes;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Timestamp;
+
+public class NumberOfPeopleBean {
+    private int id;
+    private int number;
+    private Timestamp createdAt;
+    private int roomId;
+
+    public int getId() {
+        return id;
+    }
+    public void setId(int i) {
+        id = i;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+    public void setNumber(int n) {
+        number = n;
+    }
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+    public void setCreatedAt(Timestamp c) {
+        createdAt = c;
+    }
+
+    public int getRoomId() {
+        return roomId;
+    }
+    public void setRoomId(int r) {
+        roomId = r;
+    }
+
+    public NumberOfPeopleBean findLatestByRoomId(int roomId) {
+        try {
+            Connection connection = DBManager.getDatabaseConnection();
+            String query = "SELECT id, number, created_at, room_id FROM number_of_people where room_id = ? order by created_at desc limit 1";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, roomId);
+            
+            ResultSet resultSet = statement.executeQuery();
+
+            NumberOfPeopleBean numberOfPeople = new NumberOfPeopleBean();
+            while (resultSet.next()) {
+                numberOfPeople.setId(resultSet.getInt("id"));
+                numberOfPeople.setNumber(resultSet.getInt("number"));
+                numberOfPeople.setCreatedAt(resultSet.getTimestamp("created_at"));
+                numberOfPeople.setRoomId(resultSet.getInt("room_id"));
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+            return numberOfPeople;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+}
