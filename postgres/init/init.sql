@@ -1,11 +1,7 @@
-CREATE USER docker;
-CREATE DATABASE docker;
-GRANT ALL PRIVILEGES ON DATABASE docker TO docker;
-\c docker
+CREATE USER dev;
+CREATE DATABASE db_dev;
+GRANT ALL PRIVILEGES ON DATABASE db_dev TO dev;
+\c db_dev;
 
-CREATE TABLE book (
-  id integer,
-  name varchar(30)
-);
---テーブルにデータを挿入
-INSERT INTO book VALUES (1,'SQL book');
+DROP TABLE IF EXISTS number_of_people;
+DROP TABLE IF EXISTS room;
