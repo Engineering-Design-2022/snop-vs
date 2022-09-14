@@ -4,13 +4,22 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
-  <servlet>
-    <servlet-name>DBServlet</servlet-name>
-    <servlet-class>endes.DBServlet</servlet-class>
-  </servlet>
 
+  <servlet>
+    <servlet-name>RoomListServlet</servlet-name>
+    <servlet-class>endes.RoomListServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
-    <servlet-name>DBServlet</servlet-name>
-    <url-pattern>/DBServlet</url-pattern>
+    <servlet-name>RoomListServlet</servlet-name>
+    <url-pattern>/rooms</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>RoomServlet</servlet-name>
+    <servlet-class>endes.RoomServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RoomServlet</servlet-name>
+    <url-pattern>/room</url-pattern>
   </servlet-mapping>
 </web-app>
