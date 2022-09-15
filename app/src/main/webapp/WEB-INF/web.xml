@@ -26,4 +26,12 @@
   </servlet-mapping>
   
   <!-- RoomHisory -->
+  <servlet>
+    <servlet-name>RoomHistoryServlet</servlet-name>
+    <servlet-class>endes.RoomHistoryServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RoomHistoryServlet</servlet-name>
+    <url-pattern>/roomhistory</url-pattern>
+  </servlet-mapping>
 </web-app>

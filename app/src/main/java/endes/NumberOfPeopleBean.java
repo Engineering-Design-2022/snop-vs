@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 public class NumberOfPeopleBean {
     private int id;
@@ -60,6 +61,36 @@ public class NumberOfPeopleBean {
             connection.close();
 
             return numberOfPeople;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public ArrayList<NumberOfPeopleBean> getListByRoomId(int roomId) {
+        try {
+            Connection connection = DBManager.getDatabaseConnection();
+            String query = "SELECT id, number, created_at, room_id FROM number_of_people where room_id = ? order by created_at desc";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, roomId);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            ArrayList<NumberOfPeopleBean> numberOfPeopleList = new ArrayList<NumberOfPeopleBean>();
+            while (resultSet.next()) {
+                NumberOfPeopleBean numberOfPeople = new NumberOfPeopleBean();
+                numberOfPeople.setId(resultSet.getInt("id"));
+                numberOfPeople.setNumber(resultSet.getInt("number"));
+                numberOfPeople.setCreatedAt(resultSet.getTimestamp("created_at"));
+                numberOfPeople.setRoomId(resultSet.getInt("room_id"));
+                numberOfPeopleList.add(numberOfPeople);
+            } 
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+            return numberOfPeopleList;
         } catch (Exception e) {
             e.printStackTrace();
             return null;

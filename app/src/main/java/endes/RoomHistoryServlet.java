@@ -1,6 +1,7 @@
 package endes;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -8,16 +9,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class RoomServlet extends HttpServlet {
-    public RoomServlet() {
+public class RoomHistoryServlet extends HttpServlet {
+    public RoomHistoryServlet() {
         super();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String roomIdParameter = request.getParameter("id");
-        System.out.println(roomIdParameter);
 
-        // id パラメタがなければ、ルーム一覧にリダイレクトする
         if (roomIdParameter == null) {
             response.sendRedirect("rooms");
             return;
@@ -33,11 +32,9 @@ public class RoomServlet extends HttpServlet {
 
         RequestDispatcher dispatcher;
 
-        // Room 
         RoomBean roomBean = new RoomBean();
         RoomBean room = roomBean.find(roomId);
-
-        if( room == null) {
+        if (room == null) {
             System.out.println("id:" + roomId + " のルームが見つかりません");
             dispatcher = request.getRequestDispatcher("roomNotFound.jsp");
             dispatcher.forward(request, response);
@@ -45,17 +42,16 @@ public class RoomServlet extends HttpServlet {
         }
 
         NumberOfPeopleBean nBean = new NumberOfPeopleBean();
-        NumberOfPeopleBean numberOfPeople = nBean.findLatestByRoomId(roomId);
-        if (numberOfPeople == null) {
-            System.out.println("人数が見つかりません");
+        ArrayList<NumberOfPeopleBean> numberOfPeopleList = nBean.getListByRoomId(roomId);
+        if (numberOfPeopleList == null) {
             dispatcher = request.getRequestDispatcher("error.jsp");
             dispatcher.forward(request, response);
             return;
-        }
-        
+        } 
+
         request.setAttribute("room", room);
-        request.setAttribute("numberOfPeople", numberOfPeople);
-        dispatcher = request.getRequestDispatcher("room.jsp");
+        request.setAttribute("numberOfPeopleList", numberOfPeopleList);
+        dispatcher = request.getRequestDispatcher("roomHistory.jsp");
         dispatcher.forward(request, response);
     }
 }
