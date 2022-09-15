@@ -99,7 +99,6 @@ public class RoomServlet extends HttpServlet {
             return;
         }
         
-        request.setAttribute("id", roomId);
-        doGet(request, response);
+        response.sendRedirect("room?id=" + roomId);
     }
 }
