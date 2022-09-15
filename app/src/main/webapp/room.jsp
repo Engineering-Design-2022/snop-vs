@@ -13,9 +13,11 @@
 
   <h1>Room詳細</h1>
   <%
-   NumberOfPeopleBean numberOfPeople = (NumberOfPeopleBean)request.getAttribute("numberOfPeople");
+    RoomBean room = (RoomBean)request.getAttribute("room");
+    NumberOfPeopleBean numberOfPeople = (NumberOfPeopleBean)request.getAttribute("numberOfPeople");
   %>
     <div>
+      <h2><%= room.getName() %> </h2>
       <h2> RoomId: <%= numberOfPeople.getRoomId() %> </h2>
       <p> <%= numberOfPeople.getNumber() %> 人います </p>
     </div>

@@ -5,6 +5,7 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
 
+  <!-- RoomList -->
   <servlet>
     <servlet-name>RoomListServlet</servlet-name>
     <servlet-class>endes.RoomListServlet</servlet-class>
@@ -14,6 +15,7 @@
     <url-pattern>/rooms</url-pattern>
   </servlet-mapping>
 
+  <!-- Room -->
   <servlet>
     <servlet-name>RoomServlet</servlet-name>
     <servlet-class>endes.RoomServlet</servlet-class>
@@ -22,4 +24,6 @@
     <servlet-name>RoomServlet</servlet-name>
     <url-pattern>/room</url-pattern>
   </servlet-mapping>
+  
+  <!-- RoomHisory -->
 </web-app>

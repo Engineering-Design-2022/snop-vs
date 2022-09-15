@@ -59,6 +59,37 @@ public class RoomBean {
         }
     }
 
+    public RoomBean find(int id) {
+        try {
+            Connection connection = DBManager.getDatabaseConnection();
+            String query = "SELECT * FROM room WHERE id = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            
+            RoomBean room = new RoomBean();
+            if (resultSet.next()) {
+                System.out.println(resultSet);
+                room.setId(resultSet.getInt("id"));
+                room.setName(resultSet.getString("name"));
+                room.setDescription(resultSet.getString("description"));
+            } else {
+                System.out.println("id:"+ id + "のRoomはNULLです");
+                room = null;
+            }
+            
+            resultSet.close();
+            statement.close();
+            connection.close();
+            System.out.println("id:" + room.getId() + ", name:" + room.getName() + ", description:" + room.getDescription());
+            
+            return room;
+        } catch (Exception e) {
+            System.out.println("id:"+ id + "のRoomはNULLです");
+            return null;
+        }
+    }
+
     public void insertRecord() throws Exception {
         try {
             Connection connection = DBManager.getDatabaseConnection();

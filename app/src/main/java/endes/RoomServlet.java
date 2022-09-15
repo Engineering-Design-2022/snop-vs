@@ -31,16 +31,31 @@ public class RoomServlet extends HttpServlet {
             return;
         }
 
-        NumberOfPeopleBean nBean = new NumberOfPeopleBean();
-        NumberOfPeopleBean numberOfPeople = nBean.findLatestByRoomId(roomId);
         RequestDispatcher dispatcher;
-        if (numberOfPeople != null) {
-            request.setAttribute("numberOfPeople", numberOfPeople);
-            dispatcher = request.getRequestDispatcher("room.jsp");
-        } else {
-            dispatcher = request.getRequestDispatcher("error.jsp");
+
+        // Room 
+        RoomBean roomBean = new RoomBean();
+        RoomBean room = roomBean.find(roomId);
+
+        if( room == null) {
+            System.out.println("ルームが見つかりません");
+            dispatcher = request.getRequestDispatcher("roomNotFound.jsp");
+            dispatcher.forward(request, response);
+            return;
         }
 
+        NumberOfPeopleBean nBean = new NumberOfPeopleBean();
+        NumberOfPeopleBean numberOfPeople = nBean.findLatestByRoomId(roomId);
+        if (numberOfPeople == null) {
+            System.out.println("人数が見つかりません");
+            dispatcher = request.getRequestDispatcher("error.jsp");
+            dispatcher.forward(request, response);
+            return;
+        }
+        
+        request.setAttribute("room", room);
+        request.setAttribute("numberOfPeople", numberOfPeople);
+        dispatcher = request.getRequestDispatcher("room.jsp");
         dispatcher.forward(request, response);
     }
 }
