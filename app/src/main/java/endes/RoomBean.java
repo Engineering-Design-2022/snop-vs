@@ -38,7 +38,7 @@ public class RoomBean {
         try {
             Connection connection = DBManager.getDatabaseConnection();
             Statement statement = connection.createStatement();
-            String query = "SELECT * FROM room";
+            String query = "SELECT * FROM room ORDER BY id desc limit 10";
             ResultSet resultSet = statement.executeQuery(query);
 
             while (resultSet.next()) {
@@ -90,10 +90,10 @@ public class RoomBean {
         }
     }
 
-    public void insertRecord() throws Exception {
+    public void insertRecord(String name, String description) throws Exception {
         try {
             Connection connection = DBManager.getDatabaseConnection();
-            String query = "INSERT INTO ROOMS (NAME, DESCRIPTION) VALUES (?,?)";
+            String query = "insert into room (name, description) values (?, ?)";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, name);
             statement.setString(2, description);
@@ -105,7 +105,7 @@ public class RoomBean {
             if (count > 0) {
                 System.out.println("Record inserted successfully.");
             } else {
-                System.out.println("Record not inserted.");
+                throw new Exception("Record not inserted.");
             }
         } catch (Exception e) {
             System.out.println("Exception: " + e.getMessage());

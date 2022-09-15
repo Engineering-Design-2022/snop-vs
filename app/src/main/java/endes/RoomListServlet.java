@@ -29,4 +29,31 @@ public class RoomListServlet extends HttpServlet {
         
         dispatcher.forward(request, response);
     }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String name = request.getParameter("name");
+        String description = request.getParameter("description");
+        System.out.println("Insert:  " + "name:" + name + ", description:" + description);
+        
+        if( name == null || name.isEmpty() ) {
+            response.sendError(400, "Bad Request: name is empty");
+            return;
+        }
+
+        if( description == null ) {
+            description = "";
+        }
+
+        RoomBean roomBean = new RoomBean();
+        try {
+            roomBean.insertRecord(name, description);
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendRedirect("rooms");
+            return;
+        }
+        
+        doGet(request, response);
+    }
+
 }
