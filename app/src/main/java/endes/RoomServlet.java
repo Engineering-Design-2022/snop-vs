@@ -58,4 +58,48 @@ public class RoomServlet extends HttpServlet {
         dispatcher = request.getRequestDispatcher("room.jsp");
         dispatcher.forward(request, response);
     }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String roomIdParameter = request.getParameter("roomId");
+
+        if (roomIdParameter == null) {
+            response.sendError(400, "Bad Request: roomId is empty");
+            return;
+        }
+
+        int roomId;
+        try {
+            roomId = Integer.parseInt(roomIdParameter);
+        } catch (Exception e) {
+            response.sendError(400, "Bad Request: roomId is not integer");
+            return;
+        }
+
+        String numberParameter = request.getParameter("number");
+
+        if (numberParameter == null) {
+            response.sendError(400, "Bad Request: number is empty");
+            return;
+        }
+
+        int number;
+        try {
+            number = Integer.parseInt(numberParameter);
+        } catch (Exception e) {
+            response.sendError(400, "Bad Request: number is not integer");
+            return;
+        }
+
+        NumberOfPeopleBean nBean = new NumberOfPeopleBean();
+        try {
+            nBean.insertRecord(number, roomId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendError(500, "Internal Server Error");
+            return;
+        }
+        
+        request.setAttribute("id", roomId);
+        doGet(request, response);
+    }
 }

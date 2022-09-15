@@ -96,4 +96,20 @@ public class NumberOfPeopleBean {
             return null;
         }
     }
+
+    public void insertRecord(int number, int roomId) throws Exception {
+        try {
+            Connection connection = DBManager.getDatabaseConnection();
+            String query = "INSERT INTO number_of_people (number, room_id) VALUES (?, ?)";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, number);
+            statement.setInt(2, roomId);
+            statement.executeUpdate();
+            statement.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
 }

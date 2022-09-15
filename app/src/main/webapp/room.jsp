@@ -18,7 +18,7 @@
   %>
     <div>
       <h2><%= room.getName() %> </h2>
-      <h2> RoomId: <%= numberOfPeople.getRoomId() %> </h2>
+      <h2> RoomId: <%= room.getId() %> </h2>
       <p> <%= numberOfPeople.getNumber() %> 人います </p>
     </div>
 
