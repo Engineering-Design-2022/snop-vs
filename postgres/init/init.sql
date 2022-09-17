@@ -17,7 +17,7 @@ CREATE TABLE number_of_people(
     number integer not null,
     created_at timestamp with time zone not null default CURRENT_TIMESTAMP,
     room_id int not null,
-    foreign key (room id) references room(id)
+    foreign key (room_id) references room(id)
 );
 
 insert into room (name, description) values ('311講義室','1階、4I教室');
