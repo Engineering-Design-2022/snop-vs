@@ -67,7 +67,7 @@ public class NumberOfPeopleBean{
         }
     }
 
-     public ArrayList<NumberOfPeopleBean> getListByRoomId(int roomId) {
+    public ArrayList<NumberOfPeopleBean> getListByRoomId(int roomId) {
         try {
             Connection connection = DBManager.getDatabaseConnection();
             String query = "SELECT id, number, created_at, room_id FROM number_of_people where room_id = ? order by created_at desc";
