@@ -65,6 +65,7 @@ public class NumberOfPeopleBean{
             e.printStackTrace();
             return null;
         }
+    }
 
      public ArrayList<NumberOfPeopleBean> getListByRoomId(int roomId) {
         try {
