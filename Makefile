@@ -13,3 +13,6 @@ watch:
 		inotifywait -qr -e modify -e create -e delete -e move app/src/main; \
 		make build; \
 	done
+
+doc: 
+	@mvn javadoc:javadoc -f app/pom.xml
