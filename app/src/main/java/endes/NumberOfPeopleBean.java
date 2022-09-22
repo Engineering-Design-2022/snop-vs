@@ -4,6 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -52,6 +57,21 @@ public class NumberOfPeopleBean{
      */
     public Timestamp getCreatedAt() {
         return createdAt;
+    }
+
+    /**
+     * NumberOfPeopleが登録された時刻をJSTに変換した文字列を取得する
+     * @return 時刻を表す文字列
+     */
+    public String getCreatedAtString() {
+        LocalDateTime gmtLocal = createdAt.toLocalDateTime();
+        ZonedDateTime gmtZoned = gmtLocal.atZone(ZoneId.of("GMT", ZoneId.SHORT_IDS));
+        ZonedDateTime jstZoned = gmtZoned.withZoneSameInstant(ZoneId.of("Asia/Tokyo"));
+        LocalDateTime jstLocal = jstZoned.toLocalDateTime();
+        DateTimeFormatter datetimeformatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        String dateString = jstLocal.format(datetimeformatter);
+
+        return dateString;
     }
 
     /**

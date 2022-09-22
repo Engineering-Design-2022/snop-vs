@@ -24,7 +24,7 @@
       <div class="inf-inner">
         <p> <%= room.getDescription() %> </p>
         <h4>この部屋には<span class="num"> <%= numberOfPeople.getNumber() %> </span>人います。</h4>
-        <p>（更新：<%= numberOfPeople.getCreatedAt() %>）</p>
+        <p>（更新：<%= numberOfPeople.getCreatedAtString() %>）</p>
         <a class="history-link" href=<%= "roomhistory?id=" + room.getId() %> >この部屋の人数遷移を見る</a>
       </div>
     </div>
