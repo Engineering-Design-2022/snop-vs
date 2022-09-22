@@ -3,11 +3,18 @@ package endes;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/**
+ * データベースと接続する手段を提供するクラス
+*/
 public class DBManager {
     private static String url = "jdbc:postgresql://postgres:5432/db_dev";
     private static String user = "postgres";
     private static String password = "password";
 
+    /**
+     * データベースとのコネクションを返す
+     * @return Connection 型のデータベースコネクション
+     */
     public static Connection getDatabaseConnection() {
         try {
             Class.forName("org.postgresql.Driver");

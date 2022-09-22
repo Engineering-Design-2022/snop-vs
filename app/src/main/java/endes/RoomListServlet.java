@@ -9,11 +9,21 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+/**
+* `/rooms` パスで呼ばれる RoomListServlet クラス
+* @author Ogi
+*/
 public class RoomListServlet extends HttpServlet {
     public RoomListServlet() {
         super();
     }
-
+    
+    /**
+     * GET リクエストを受け取ったときの処理
+     * データベースから Room を複数取得して rooms.jsp に渡す
+    * @param request サーブレット用のHTTPリクエスト
+    * @param response サーブレット用のHTTPレスポンス
+    */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //部屋の情報を扱うjavaBeanを作る
@@ -37,6 +47,12 @@ public class RoomListServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
+    /**
+     * POST リクエストを受け取ったときの処理
+     * リクエストの name, description パラメタ を取得し、Room を データベースに登録する
+    * @param request サーブレット用のHTTPリクエスト
+    * @param response サーブレット用のHTTPレスポンス
+    */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //新しい部屋の情報を取得
         String name = request.getParameter("name");

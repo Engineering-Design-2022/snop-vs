@@ -6,40 +6,83 @@ import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
+/**
+ * 部屋の人数(NumberOfPeople) モデルを表すクラス
+ * @author yuto_ka
+ */
 public class NumberOfPeopleBean{
     private int id;
     private int number;
     private Timestamp createdAt;
     private int roomId;
 
+    /**
+     * id を取得する
+     * @return NumberOfPeople の ID
+     */
     public int getId() {
         return id;
     }
+    /**
+     * id を設定する
+     * @param i int 型の id
+     */
     public void setId(int i) {
         id = i;
     }
 
+    /**
+     * 部屋の人数を取得する
+     * @return 部屋の人数
+     */
     public int getNumber() {
         return number;
     }
+    /**
+     * 部屋の人数を設定する
+     * @param n int 型の 部屋の人数
+     */
     public void setNumber(int n) {
         number = n;
     }
 
+    /**
+     * NumberOfPeopleが登録された時刻を取得する
+     * @return NumberOfPeopleが登録された時刻
+     */
     public Timestamp getCreatedAt() {
         return createdAt;
     }
+
+    /**
+     * NumberOfPeopleが登録された時刻を設定する
+     * @param c Timestamp 型の NumberOfPeopleが登録された時刻
+     */
     public void setCreatedAt(Timestamp c) {
         createdAt = c;
     }
 
+    /**
+     * 部屋のIDを取得する
+     * @return NumberOfPeopleに紐付いている部屋のID
+     */
     public int getRoomId() {
         return roomId;
     }
+
+    /**
+     * 部屋のIDを設定する
+     * @param r int 型の 部屋のID
+     */
     public void setRoomId(int r) {
         roomId = r;
     }
 
+    /**
+     * 部屋の一番最近の人数を取得する
+     * @param roomId int 型の 部屋のID
+     * @return NumberOfPeople
+     */
     public NumberOfPeopleBean findLatestByRoomId(int roomId) {
         try {
             Connection connection = DBManager.getDatabaseConnection();
@@ -67,6 +110,11 @@ public class NumberOfPeopleBean{
         }
     }
 
+    /**
+     * 部屋の人数の履歴を取得する
+     * @param roomId int 型の 部屋のID
+     * @return 渡された roomId を持つ NumberOfPeole の ArrayList
+     */
     public ArrayList<NumberOfPeopleBean> getListByRoomId(int roomId) {
         try {
             Connection connection = DBManager.getDatabaseConnection();
@@ -97,6 +145,11 @@ public class NumberOfPeopleBean{
         }
     }
 
+    /**
+     * 部屋の人数を登録する
+     * @param number int 型の 部屋の人数
+     * @param roomId int 型の 部屋のID
+     */
     public void insertRecord(int number, int roomId) throws Exception {
         try {
             Connection connection = DBManager.getDatabaseConnection();
