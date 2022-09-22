@@ -30,7 +30,7 @@
     
         <div class="card">
           <h3><span> <%= nBean.getNumber() %> </span>人 </h3>
-          <p class="card-date"> <%= nBean.getCreatedAt()  %> </p>
+          <p class="card-date"> <%= nBean.getCreatedAtString()  %> </p>
         </div>
 
       <%
