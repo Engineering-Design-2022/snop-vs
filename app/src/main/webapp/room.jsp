@@ -1,3 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="endes.*" %>
+<%
+    RoomBean room = (RoomBean)request.getAttribute("room");
+    NumberOfPeopleBean numberOfPeople = (NumberOfPeopleBean)request.getAttribute("numberOfPeople");
+%>
+
 <!DOCTYPE html>
 <html>
 
@@ -13,17 +20,17 @@
     <h1>部屋詳細</h1>
 
     <div class="inf">
-      <h2> 311講義室 </h2>
+      <h2> <%= room.getName() %> </h2>
       <div class="inf-inner">
-        <p> 1階、4I教室 </p>
-        <h4>この部屋には<span class="num">5</span>人います。</h4>
-        <p>（更新：2022-09-17 15:11:57）</p>
-        <a class="history-link">この部屋の人数遷移を見る</a>
+        <p> <%= room.getDescription() %> </p>
+        <h4>この部屋には<span class="num"> <%= numberOfPeople.getNumber() %> </span>人います。</h4>
+        <p>（更新：<%= numberOfPeople.getCreatedAt() %>）</p>
+        <a class="history-link" href=<%= "roomhistory?id=" + room.getId() %> >この部屋の人数遷移を見る</a>
       </div>
     </div>
 
     <div class="links">
-      <a href="#">
+      <a href="rooms">
         部屋選択のページに戻る
       </a>
     </div>
