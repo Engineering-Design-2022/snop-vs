@@ -1,0 +1,1 @@
+tar cvzf app.tar.gz ./app/target/app.war ./postgres ./tomcat ./docker-compose.yml
