@@ -26,6 +26,13 @@ insert into room (name, description) values ('情報基礎実験室','4階');
 insert into room (name, description) values ('情報回路実験室','4階');
 
 insert into number_of_people (number, room_id) values (7, 1);
+insert into number_of_people (number, room_id) values (8, 1);
+insert into number_of_people (number, room_id) values (13, 1);
+
 insert into number_of_people (number, room_id) values (3, 2);
+insert into number_of_people (number, room_id) values (4, 2);
+
 insert into number_of_people (number, room_id) values (10, 3);
+
 insert into number_of_people (number, room_id) values (0, 4);
+insert into number_of_people (number, room_id) values (1, 4);

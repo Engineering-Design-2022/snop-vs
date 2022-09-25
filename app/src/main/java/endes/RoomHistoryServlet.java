@@ -9,11 +9,21 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+/**
+* `/roomhistory` パスで呼ばれる RoomHistoryServlet クラス
+* @author lemonadern
+*/
 public class RoomHistoryServlet extends HttpServlet {
     public RoomHistoryServlet() {
         super();
     }
 
+    /**
+     * GET リクエストを受け取ったときの処理
+     * id パラメタを取得し、Room と NumberOfPeopleのリスト をデータベースから取得して roomHistory.jsp に渡す
+    * @param request サーブレット用のHTTPリクエスト
+    * @param response サーブレット用のHTTPレスポンス
+    */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String roomIdParameter = request.getParameter("id");
 

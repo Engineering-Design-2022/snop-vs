@@ -11,5 +11,8 @@ build:
 watch:
 	@while true; do \
 		inotifywait -qr -e modify -e create -e delete -e move app/src/main; \
-		make build; \
+		make package; \
 	done
+
+doc: 
+	@mvn javadoc:javadoc -f app/pom.xml
